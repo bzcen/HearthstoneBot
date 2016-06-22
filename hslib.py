@@ -1,4 +1,5 @@
 # Library containing most Hearthstone-related data structures
+import random
 
 # class for containing individual card
 class Card:
@@ -7,8 +8,10 @@ class Card:
 	# name = card name as shown in logs
 	# health = card health (nullable)
 	# attack = card attack (nullable)
+	# cost = card mana cost (in number of crystals)
 
-	def __init__(self, id, name, health, attack):
+	# if any of the parameters are left unfilled, replace with None
+	def __init__(self, id = None, name = None, health = None, attack = None, cost = None):
 		self.id = self
 		self.name = name
 		self.health = health
@@ -19,15 +22,38 @@ class Card:
 class Hand:
 
 	def __init__(self):
-		self.handSize = 0
 		self.cards = {}
 
 	def drawCard(self, card):
-		self.handSize += 1
 		self.cards[len(self.cards)] = card
 
 	# temp function for testing
 	def playCard(self, index):
 		print "Played " + self.cards[index].name
 		del self.cards[index]
-		self.handSize -= 1
+
+# class for deck
+class Deck:
+
+	# pulls the card from an external file
+	def __init__(self, import_file):
+
+		# TODO: write a parser of a deck file to make the deck, 30 cards total
+		self.cards = [ Card(0, "Savannah Highmane") for i in range(29)]
+
+	def popTop(self):
+		card = self.cards.pop()
+
+	def shuffle(self):
+		random.shuffle(self.cards)
+
+	def printRemainingCards(self):
+		for i in range(len(self.cards)):
+			print self.cards[i].name
+
+
+
+
+
+
+

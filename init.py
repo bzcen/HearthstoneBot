@@ -8,11 +8,14 @@ if choice == 1:
 
 else:
 	print "Running for Windows..."
-	c = hslib.Card(1, "Coldlight Oracle", 2, 2)
+	c = hslib.Card(1, "Coldlight Oracle", 2, 2, 3)
 	h = hslib.Hand()
-	print "My hand size is " + str(h.handSize)
+	d = hslib.Deck(None)
+	print "My hand size is " + str(len(h.cards))
 	print "Draw"
 	h.drawCard(c)
-	print "My hand size is " + str(h.handSize)
+	print "My hand size is " + str(len(h.cards))
 	h.playCard(0)
-	print "My hand size is " + str(h.handSize)
+	print "My hand size is " + str(len(h.cards))
+
+	d.printRemainingCards()
